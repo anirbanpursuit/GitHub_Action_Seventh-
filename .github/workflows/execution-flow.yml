@@ -87,4 +87,4 @@ jobs:
       - name: Output Information
         run: |
           echo "Something went wrong."
-          printf "${{ toJson(github) }}"
+          printf "${{ toJson(github).event }}"
