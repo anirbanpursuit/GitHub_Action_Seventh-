@@ -1,8 +1,20 @@
 name: Reusable Code use for deployment
-on: [workflow_call, workflow_dispatch]
+on:
+    workflow_call:
+        inputs:
+            artifacts-name:
+                description: The name of the deployment artifact file name
+                required: true
+                type: string
 jobs:
     Deployment:
         runs-on: ubuntu-latest
         steps:
+            - name: Get Code for deployment from other workflow
+              uses: actions/download-artifact@v6
+              with:
+                name: ${{ inputs.artifacts-name }}
+            - name: Print the file
+              run: npm ls
             - name: Output information
               run: echo "Deployemnt the code"
