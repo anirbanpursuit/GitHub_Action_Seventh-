@@ -15,6 +15,6 @@ jobs:
               with:
                 name: ${{ inputs.artifacts-name }}
             - name: Print the file
-              run: npm ls
+              run: ls
             - name: Output information
               run: echo "Deployemnt the code"
