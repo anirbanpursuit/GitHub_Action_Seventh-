@@ -1,5 +1,5 @@
 name: Reusable Code use for deployment
-on: workflow_call
+on: [workflow_call, workflow_dispatch]
 jobs:
     Deployment:
         runs-on: ubuntu_latest
