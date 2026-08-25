@@ -72,6 +72,12 @@ jobs:
     uses: ./.github/workflows/reusable.yml
     with:
       artifacts-name: dist-files
+  printDeploymentOutput:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Preint deployment report
+        run: echo "${{ needs.deploy.outputs.result }}"
   report:
     needs: [lint, deploy]
     if: failure()

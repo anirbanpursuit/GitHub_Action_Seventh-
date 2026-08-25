@@ -6,8 +6,14 @@ on:
                 description: The name of the deployment artifact file name
                 required: true
                 type: string
+        outputs:
+            result:
+                description: The result of the deployment operation
+                value: ${{ jobs.Deployment.outputs.outcome }}
 jobs:
     Deployment:
+        outputs:
+            outcome: ${{ steps.set-result.outputs.step-result }}
         runs-on: ubuntu-latest
         steps:
             - name: Get Code for deployment from other workflow
@@ -18,3 +24,6 @@ jobs:
               run: ls
             - name: Output information
               run: echo "Deployemnt the code"
+            - name: Print Output result
+              id: set-result
+              run: echo "step-result = success" >> GITHUB_OUTPUT
